@@ -1,0 +1,13 @@
+recordlinkage
+PIL
+plotly
+pyxlsb
+wordcloud
+keras
+pathlib
+tensorflow
+seaborn
+import tweepy
+nameparser
+gender_guesser
+altair
