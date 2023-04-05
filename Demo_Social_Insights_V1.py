@@ -1,5 +1,7 @@
 import streamlit as st
 st.set_page_config(layout="wide")
+!pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.1/en_ner_bc5cdr_md-0.5.1.tar.gz
+!pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
 import pandas as pd
 import io
 from io import BytesIO
