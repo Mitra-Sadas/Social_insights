@@ -2175,7 +2175,7 @@ def func(choice):
 			############################################
 			# Getting the HCP Tweets from Twitter API #
 			############################################
-			with st.spinner("Analysing the Data and Initializing NLP models, please wait...):
+			with st.spinner("Analysing the Data and Initializing NLP models, please wait..."):
 				import matplotlib.pyplot as plt
 				import en_ner_bc5cdr_md
 				import en_core_web_sm
