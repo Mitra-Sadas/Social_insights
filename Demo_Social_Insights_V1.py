@@ -1550,6 +1550,8 @@ def get_user_tweet_profile(d):
 	client = tweepy.Client(bearer_token='AAAAAAAAAAAAAAAAAAAAABYZgwEAAAAAb4tPJ1oHg5LIABwh6d9LWszHsho%3DUm7PFhkU4uuBrVPq3PT3jgUZxeUsJb52zaLlosv7pXLxv9ch93')
 
 
+
+
 def func(choice):
 
 	if choice == "Data Collection":
@@ -1724,7 +1726,36 @@ def func(choice):
 					placeholder.empty()
 		if len(d)>0:
 			#d = d.head(2)
+			@st.cache(allow_output_mutation=True)
+			def run_nlp_models(df):
+				for i,v in enumerate(df['Insight'].astype(str)):
+					df.loc[i,'Insight_word_cloud'] = prep.clean(v)
 
+				with st.spinner("Running Sentiment Analysis, please wait..."):
+					df = Sentiment_Analysis(df)
+
+				with st.spinner("Running Aspect based Sentiment Analysis, please wait..."):				
+					asbadf = pd.read_excel("absa_sentiment_v3 Medical Condition.xlsx")
+					asbadf1 = asbadf
+
+					symdf = pd.read_excel("absa_sentiment_v3 Symptom.xlsx")
+					symdf1 = symdf
+
+					meddf = pd.read_excel("absa_sentiment_v3 Medication.xlsx")
+					meddf1 = meddf	
+
+				with st.spinner("Running KIC Model, please wait..."):
+					df = KIC_Predction_Pipeline(df)
+
+
+				#df = pd.read_excel("HCP_KIC.xlsx")
+				df['tweeted_time'] = pd.to_datetime(df['tweeted_time'])
+				df['date']=pd.to_datetime(df['tweeted_time'])
+				df['year']=pd.DatetimeIndex(df['date']).year
+				df['year']=df['year'].astype('object')
+				df['date'] = pd.to_datetime(df['date'])
+
+				return df,asbadf1,symdf1,meddf1
 			def f_word_cloud(column):
 			    comment_words = ' '
 			    stopwords = set(STOPWORDS)
@@ -2148,47 +2179,7 @@ def func(choice):
 			d_c_base_spacy_model = spacy.load("en_ner_bc5cdr_md")
 			pgo_base_spacy_model = spacy.load("en_core_web_sm")
 			df = pd.read_excel("HCP_Tweets.xlsx")
-
-			check = st.sidebar.checkbox("Use the previously Run Model Results")
-
-			if check:
-				df = st.session_state.model_df
-				asbadf1 = st.session_state['asbadf1']
-				symdf1 = st.session_state['symdf1']
-				meddf1 = st.session_state['meddf1']
-
-			else:	
-				for i,v in enumerate(df['Insight'].astype(str)):
-					df.loc[i,'Insight_word_cloud'] = prep.clean(v)
-
-
-				with st.spinner("Running Sentiment Analysis, please wait..."):
-					df = Sentiment_Analysis(df)
-
-				with st.spinner("Running Aspect based Sentiment Analysis, please wait..."):				
-					asbadf = pd.read_excel("absa_sentiment_v3 Medical Condition.xlsx")
-					asbadf1 = asbadf
-
-					symdf = pd.read_excel("absa_sentiment_v3 Symptom.xlsx")
-					symdf1 = symdf
-
-					meddf = pd.read_excel("absa_sentiment_v3 Medication.xlsx")
-					meddf1 = meddf	
-
-				with st.spinner("Running KIC Model, please wait..."):
-					df = KIC_Predction_Pipeline(df)
-
-
-				#df = pd.read_excel("HCP_KIC.xlsx")
-				df['tweeted_time'] = pd.to_datetime(df['tweeted_time'])
-				df['date']=pd.to_datetime(df['tweeted_time'])
-				df['year']=pd.DatetimeIndex(df['date']).year
-				df['year']=df['year'].astype('object')
-				df['date'] = pd.to_datetime(df['date'])
-				st.session_state['model_df'] = df
-				st.session_state['asbadf1'] = asbadf1
-				st.session_state['symdf1'] = symdf1
-				st.session_state['meddf1'] = meddf1
+			df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
 			data1 = df
 			data1['HCP Name'] = "Dr. "+ data1['Full_Name']
@@ -2313,7 +2304,7 @@ def func(choice):
 						with col5:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
 							with st.spinner("Running ASBA Model..."):
-								c = absa_chart(asbadf)
+								c = absa_chart(asbadf1)
 							absaplot = Image.open('absachart.png')
 							st.image(absaplot, clamp=False, channels="RGB", use_column_width=True)
 							#st.dataframe(asbadf.head())
@@ -2337,13 +2328,13 @@ def func(choice):
 
 						with col7:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Symptoms mentioned:question:</p>**',unsafe_allow_html=True)
-							plt = symptom_graph(symdf)
+							plt = symptom_graph(symdf1)
 							st.pyplot(plt)							
 
 
 						with col8:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Medications:question:</p>**',unsafe_allow_html=True)
-							plt = medication_graph(meddf)
+							plt = medication_graph(meddf1)
 							st.pyplot(plt)
 
 						st.markdown("""---""")
