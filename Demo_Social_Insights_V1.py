@@ -2367,7 +2367,7 @@ def func(choice):
 					pass
 			with st.spinner("scoring in progress, please wait..."):
 				sleep(2)
-				filename = r'C:\Users\sadasivuni.mitra\Downloads\NLP Streamlit Models\NLP MOdel9Dec22\Matching HCPs.xlsx'
+				filename = 'Matching HCPs.xlsx'
 				weightagefile = 'Weightages_UK_2.xlsx'
 				scoring = pd.read_excel(filename, sheet_name='Scoring Sheet')
 				scoring = scoring.fillna('')
