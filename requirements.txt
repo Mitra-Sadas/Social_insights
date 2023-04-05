@@ -18,9 +18,9 @@ py==1.11.0
 pyxlsb==1.0.9
 recordlinkage==0.14
 regex==2022.9.13
-scispacy==0.4.0
+scispacy
 https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.1/en_core_sci_sm-0.5.1.tar.gz
-spacy==3.4.1
+spacy
 scikit-learn==1.0.2
 scipy==1.8.0
 seaborn==0.11.2
