@@ -2175,12 +2175,13 @@ def func(choice):
 			############################################
 			# Getting the HCP Tweets from Twitter API #
 			############################################
-			import matplotlib.pyplot as plt
-			import en_ner_bc5cdr_md
-			import en_core_web_sm
-			nltk.download('stopwords')
-			d_c_base_spacy_model = en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
-			pgo_base_spacy_model = en_core_web_sm.load() #spacy.load("en_core_web_sm")
+			with st.spinner("Analysing the Data and Initializing NLP models, please wait...):
+				import matplotlib.pyplot as plt
+				import en_ner_bc5cdr_md
+				import en_core_web_sm
+				nltk.download('stopwords')
+				d_c_base_spacy_model = en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
+				pgo_base_spacy_model = en_core_web_sm.load() #spacy.load("en_core_web_sm")
 			df = pd.read_excel("HCP_Tweets.xlsx")
 			df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
@@ -2307,7 +2308,7 @@ def func(choice):
 						with col5:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
 							with st.spinner("Running ASBA Model..."):
-								c = absa_chart(asbadf1)
+								c = absa_chart(asbadf)
 							absaplot = Image.open('absachart.png')
 							st.image(absaplot, clamp=False, channels="RGB", use_column_width=True)
 							#st.dataframe(asbadf.head())
@@ -2331,13 +2332,13 @@ def func(choice):
 
 						with col7:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Symptoms mentioned:question:</p>**',unsafe_allow_html=True)
-							plt = symptom_graph(symdf1)
+							plt = symptom_graph(symdf)
 							st.pyplot(plt)							
 
 
 						with col8:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Medications:question:</p>**',unsafe_allow_html=True)
-							plt = medication_graph(meddf1)
+							plt = medication_graph(meddf)
 							st.pyplot(plt)
 
 						st.markdown("""---""")
