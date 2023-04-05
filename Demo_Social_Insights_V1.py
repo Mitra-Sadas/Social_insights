@@ -2175,9 +2175,11 @@ def func(choice):
 			# Getting the HCP Tweets from Twitter API #
 			############################################
 			import matplotlib.pyplot as plt
+			import en_ner_bc5cdr_md
+			import en_core_web_sm
 			nltk.download('stopwords')
-			d_c_base_spacy_model = spacy.load("en_ner_bc5cdr_md")
-			pgo_base_spacy_model = spacy.load("en_core_web_sm")
+			d_c_base_spacy_model = en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
+			pgo_base_spacy_model = en_core_web_sm.load() #spacy.load("en_core_web_sm")
 			df = pd.read_excel("HCP_Tweets.xlsx")
 			df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
