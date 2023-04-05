@@ -19,7 +19,7 @@ pyxlsb==1.0.9
 recordlinkage==0.14
 regex==2022.9.13
 scispacy
-spacy
+spacy>=3.0.0,<4.0.0
 en_ner_bc5cdr_md @ https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.1/en_ner_bc5cdr_md-0.5.1.tar.gz
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
 scikit-learn==1.0.2
