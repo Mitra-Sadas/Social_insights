@@ -2145,8 +2145,8 @@ def func(choice):
 			############################################
 			import matplotlib.pyplot as plt
 			nltk.download('stopwords')
-			d_c_base_spacy_model = spacy.load("en_ner_bc5cdr_md")
-			pgo_base_spacy_model = spacy.load("en_core_web_sm")
+			d_c_base_spacy_model = spacy.load("https://github.com/Mitra-Sadas/Social_insights/blob/main/en_core_sci_sm-0.5.1.tar.gz?raw=true")
+			pgo_base_spacy_model = spacy.load("https://github.com/Mitra-Sadas/Social_insights/blob/main/en_core_web_sm-3.5.0-py3-none-any.whl?raw=true")
 			df = pd.read_excel("HCP_Tweets.xlsx")
 
 			check = st.sidebar.checkbox("Use the previously Run Model Results")
