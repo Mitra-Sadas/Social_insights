@@ -15,6 +15,7 @@ plotly==5.13.1
 packaging==21.3
 pandas==1.4.1
 py==1.11.0
+pyxlsb==1.0.9
 recordlinkage==0.14
 regex==2022.9.13
 scikit-learn==1.0.2
