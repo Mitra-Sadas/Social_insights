@@ -2305,7 +2305,7 @@ def func(choice):
 							st.pyplot(plt)
 						st.markdown("""---""")
 						#col5, 
-						col6  = st.columns(1)
+						col6  = st.container()
 						#with col5:
 						#	st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
 						#	with st.spinner("Running ASBA Model..."):
