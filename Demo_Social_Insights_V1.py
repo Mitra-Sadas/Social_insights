@@ -2304,13 +2304,14 @@ def func(choice):
 								plt = pie_chart(data)
 							st.pyplot(plt)
 						st.markdown("""---""")
-						col5, col6  = st.columns(2)
-						with col5:
-							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
-							with st.spinner("Running ASBA Model..."):
-								c = absa_chart(asbadf)
-							absaplot = Image.open('absachart.png')
-							st.image(absaplot, clamp=False, channels="RGB", use_column_width=True)
+						#col5, 
+						col6  = st.columns(1)
+						#with col5:
+						#	st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
+						#	with st.spinner("Running ASBA Model..."):
+						#		c = absa_chart(asbadf)
+						#	absaplot = Image.open('absachart.png')
+						#	st.image(absaplot, clamp=False, channels="RGB", use_column_width=True)
 							#st.dataframe(asbadf.head())
 							
 							#st.altair_chart(c, use_container_width=True)
@@ -2328,18 +2329,18 @@ def func(choice):
 							plt = kic_graph(data)
 							st.pyplot(plt)
 
-						col7, col8 = st.columns(2)
+						#col7, col8 = st.columns(2)
 
-						with col7:
-							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Symptoms mentioned:question:</p>**',unsafe_allow_html=True)
-							plt = symptom_graph(symdf)
-							st.pyplot(plt)							
+						#with col7:
+						#	st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Symptoms mentioned:question:</p>**',unsafe_allow_html=True)
+						#	plt = symptom_graph(symdf)
+						#	st.pyplot(plt)							
 
 
-						with col8:
-							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Medications:question:</p>**',unsafe_allow_html=True)
-							plt = medication_graph(meddf)
-							st.pyplot(plt)
+						#with col8:
+						#	st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the Key Medications:question:</p>**',unsafe_allow_html=True)
+						#	plt = medication_graph(meddf)
+						#	st.pyplot(plt)
 
 						st.markdown("""---""")
 	
