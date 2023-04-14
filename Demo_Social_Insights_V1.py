@@ -2331,7 +2331,7 @@ def func(choice):
 							st.pyplot(plt)
 							#box_style = "background-color: #FFFF00; padding: 10px; border: 2px solid #FF0000; border-radius: 5px;"#<div style='{box_style}'>{hcpname}</div> 
 							highlighted_text = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'>{round(val[0],2)}%</span> engagement rate.</p>"
-							st.write(highlighted_text, unsafe_allow_html=True)
+							st.success(st.write(highlighted_text, unsafe_allow_html=True))
 							
 
 						#col7, col8 = st.columns(2)
