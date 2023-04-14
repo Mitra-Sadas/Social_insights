@@ -2038,9 +2038,10 @@ def func(choice):
 				plt.yticks(fontsize=12)
 				plt.ylabel('Counts', fontsize=15)
 				plt.xlabel('KIC', fontsize=15)
+				val1=data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore')
 				val=data['KIC-1_Pred'].value_counts(normalize=True).drop(['HS','COSENTYX','OTHER'],errors='ignore')
-				for i in range(len(val)):
-				    plt.text(y=i-0.05,x=val.values[i]+0.05,s=str(val.values[i]*100),fontsize=15)
+				for i in range(len(val1)):
+				    plt.text(y=i-0.05,x=val1.values[i]+0.05,s=str(round(val.values[i]*100,2)),fontsize=15)
 				return plt
 			def symptom_graph(data):
 				plt.figure(figsize=[15,8])
