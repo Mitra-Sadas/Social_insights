@@ -2032,7 +2032,7 @@ def func(choice):
 			def kic_graph(data):
 				plt.figure(figsize=[15,8])
 				#final_kic1 = final_kic['KIC-1_Pred'].drop(["OTHER","COSENTYX","HS"],axis=0)
-				data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore').plot(kind= 'bar')
+				data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore').plot(kind= 'barh')
 				#plt.title('Distribution of Intents', fontsize=25)
 				plt.xticks(rotation = 70,fontsize=15)
 				plt.yticks(fontsize=15)
