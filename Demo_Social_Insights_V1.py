@@ -2041,7 +2041,7 @@ def func(choice):
 				val1=data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore')
 				val=data['KIC-1_Pred'].value_counts(normalize=True).drop(['HS','COSENTYX','OTHER'],errors='ignore')
 				for i in range(len(val1)):
-				    plt.text(y=i-0.05,x=val1.values[i]+0.05,s=str(round(val.values[i]*100,2)),fontsize=15)
+				    plt.text(y=i-0.05,x=val1.values[i]+0.05,s=str(round(val.values[i],2)),fontsize=15)
 				return plt,val
 			def symptom_graph(data):
 				plt.figure(figsize=[15,8])
