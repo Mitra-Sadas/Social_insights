@@ -2042,7 +2042,7 @@ def func(choice):
 				val=data['KIC-1_Pred'].value_counts(normalize=True).drop(['HS','COSENTYX','OTHER'],errors='ignore')
 				for i in range(len(val1)):
 				    plt.text(y=i-0.05,x=val1.values[i]+0.05,s=str(round(val.values[i]*100,2)),fontsize=15)
-				return plt
+				return plt,val
 			def symptom_graph(data):
 				plt.figure(figsize=[15,8])
 				if len(data)>0:
@@ -2327,8 +2327,9 @@ def func(choice):
 						with col6:
 							#st.write("**What are the key Topics discussed**:question:")
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the key Topics discussed:question:</p>**',unsafe_allow_html=True)
-							plt = kic_graph(data)
+							plt,val = kic_graph(data)
 							st.pyplot(plt)
+							st.write("{} is discussing {} as a key area of focus with {} engagement rate.".format(hcpname,val.index[0],val.index[0]))
 
 						#col7, col8 = st.columns(2)
 
