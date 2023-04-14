@@ -2329,7 +2329,9 @@ def func(choice):
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the key Topics discussed:question:</p>**',unsafe_allow_html=True)
 							plt,val = kic_graph(data)
 							st.pyplot(plt)
-							st.write("{} is discussing {} as a key area of focus with {}% engagement rate.".format(hcpname,val.index[0],round(val[0],2)))
+							highlighted_text = f"<p style='color: red; font-weight: bold;'>Hello, <span style='color: blue;'>world</span>! This is a sample text.</p>"
+							st.write(highlighted_text, unsafe_allow_html=True)
+							st.write("**{}** is discussing <p style='color: blue; font-weight: bold;'>{} as a key area of focus with <p style='color: green; font-weight: bold;'>{}% engagement rate.".format(hcpname,val.index[0],round(val[0],2)))
 
 						#col7, col8 = st.columns(2)
 
