@@ -2034,13 +2034,13 @@ def func(choice):
 				#final_kic1 = final_kic['KIC-1_Pred'].drop(["OTHER","COSENTYX","HS"],axis=0)
 				data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore').plot(kind= 'barh')
 				#plt.title('Distribution of Intents', fontsize=25)
-				plt.xticks(rotation = 70,fontsize=15)
-				plt.yticks(fontsize=15)
+				plt.xticks(fontsize=15) #rotation = 70,
+				plt.yticks(fontsize=10)
 				plt.ylabel('Counts', fontsize=15)
 				plt.xlabel('KIC', fontsize=15)
 				val=data['KIC-1_Pred'].value_counts().drop(['HS','COSENTYX','OTHER'],errors='ignore')
 				for i in range(len(val)):
-				    plt.text(x=i-0.05,y=val.values[i]+0.05,s=str(val.values[i]),fontsize=15)
+				    plt.text(y=i-0.05,x=val.values[i]+0.05,s=str(val.values[i]),fontsize=15)
 				return plt
 			def symptom_graph(data):
 				plt.figure(figsize=[15,8])
