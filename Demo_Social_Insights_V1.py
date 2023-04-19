@@ -1700,7 +1700,8 @@ def func(choice):
 
 	if choice == "Insights":
 		d = pd.DataFrame()
-		select_data = st.sidebar.radio("Please choose an option",['Use valid profiles Data','Upload New File'])
+		plchldradio = st.empty()
+		select_data = plchldradio.radio("Please choose an option",['Use valid profiles Data','Upload New File'])
 
 		if select_data == "Use valid profiles Data":
 			try:
@@ -1709,6 +1710,7 @@ def func(choice):
 				
 				if click:
 					plchld.empty()
+					plchldradio.empty()
 					d = st.session_state.flag
 					
 			except:
@@ -1720,11 +1722,14 @@ def func(choice):
 		#with col21:
 		if select_data == "Upload New File":
 				placeholder = st.empty()
+				plchldfile = st.empty()
 				placeholder.write("Please upload the file for performing Analysis")
-				upld = st.sidebar.file_uploader("Upload Valid profiles Data for Analysis",type=["csv"])
+				upld = plchldfile.file_uploader("Upload Valid profiles Data for Analysis",type=["csv"])
 				if upld is not None:
 					d = pd.read_csv(upld)
 					placeholder.empty()
+					plchldradio.empty()
+					plchldfile.empty()
 		if len(d)>0:
 			#d = d.head(2)
 			@st.cache(allow_output_mutation=True)
@@ -2400,7 +2405,7 @@ def func(choice):
 				share = []
 				for i in deciledf['Overall Affinity Scores']:
 				    cshare=cshare+i/oa_sum
-				    share.append(cshare)
+					share.append(cshare)
 				deciledf['C.Share'] = share
 
 				D=10
