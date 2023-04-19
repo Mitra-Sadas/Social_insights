@@ -2404,8 +2404,10 @@ def func(choice):
 				cshare = 0
 				share = []
 				for i in deciledf['Overall Affinity Scores']:
-				    cshare=cshare+i/oa_sum
+				{
+					cshare=cshare+(i/oa_sum)
 					share.append(cshare)
+				}
 				deciledf['C.Share'] = share
 
 				D=10
