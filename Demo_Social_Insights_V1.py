@@ -2364,11 +2364,11 @@ def func(choice):
 						
 							#st.success(highlighted_text)
 						
-						with col7:
+						with col5:
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">How does the sentiment vary:question:</p>**',unsafe_allow_html=True)
 							c = absa_kic(data)
 							st.altair_chart(c,use_container_width=True)
-							
+
 						#box_style = "background-color: #FFFF00; padding: 10px; border: 2px solid #FF0000; border-radius: 5px;"#<div style='{box_style}'>{hcpname}</div> 
 						if hcpname !="ALL":
 							highlighted_text1 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[0],2)}</span> engagement rate.</p>"
