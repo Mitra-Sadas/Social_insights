@@ -2338,8 +2338,7 @@ def func(choice):
 								plt = pie_chart(data)
 							st.pyplot(plt)
 						st.markdown("""---""")
-						#col5, 
-						col6  = st.container()
+						col6,col5  = st.columns(2)
 						#with col5:
 						#	st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">Whats the distribution of content:question:</p>**',unsafe_allow_html=True)
 						#	with st.spinner("Running ASBA Model..."):
@@ -2362,26 +2361,29 @@ def func(choice):
 							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">What are the key Topics discussed:question:</p>**',unsafe_allow_html=True)
 							plt,val = kic_graph(data)
 							st.pyplot(plt)
-							#box_style = "background-color: #FFFF00; padding: 10px; border: 2px solid #FF0000; border-radius: 5px;"#<div style='{box_style}'>{hcpname}</div> 
-							if hcpname !="ALL":
-								highlighted_text1 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[0],2)}</span> engagement rate.</p>"
-								highlighted_text2 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[1]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[1],2)}</span> engagement rate.</p>"
-								highlighted_text3 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[2]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[2],2)}</span> engagement rate.</p>"
-								st.write(highlighted_text1, unsafe_allow_html=True)
-								st.write(highlighted_text2, unsafe_allow_html=True)
-								st.write(highlighted_text3, unsafe_allow_html=True)
-							else:
-								highlighted_text1 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[0],2)}</span> engagement rate.</p>"
-								highlighted_text2 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[1]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[1],2)}</span> engagement rate.</p>"
-								highlighted_text3 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[2]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[2],2)}</span> engagement rate.</p>"
-								st.write(highlighted_text1, unsafe_allow_html=True)
-								st.write(highlighted_text2, unsafe_allow_html=True)
-								st.write(highlighted_text3, unsafe_allow_html=True)								
+						
 							#st.success(highlighted_text)
 						
-						c = absa_kic(data)
-						st.altair_chart(c)
-
+						with col7:
+							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">How does the sentiment vary:question:</p>**',unsafe_allow_html=True)
+							c = absa_kic(data)
+							st.altair_chart(c,use_container_width=True)
+							
+						#box_style = "background-color: #FFFF00; padding: 10px; border: 2px solid #FF0000; border-radius: 5px;"#<div style='{box_style}'>{hcpname}</div> 
+						if hcpname !="ALL":
+							highlighted_text1 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[0],2)}</span> engagement rate.</p>"
+							highlighted_text2 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[1]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[1],2)}</span> engagement rate.</p>"
+							highlighted_text3 = f"<p style='color: black;''font-weight: bold;'><span style='color: orange;''font-weight: bold;'>{hcpname}</span> is discussing <span style='color: blue;'>{val.index[2]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[2],2)}</span> engagement rate.</p>"
+							st.write(highlighted_text1, unsafe_allow_html=True)
+							st.write(highlighted_text2, unsafe_allow_html=True)
+							st.write(highlighted_text3, unsafe_allow_html=True)
+						else:
+							highlighted_text1 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[0]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[0],2)}</span> engagement rate.</p>"
+							highlighted_text2 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[1]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[1],2)}</span> engagement rate.</p>"
+							highlighted_text3 = f"<p style='color: black;''font-weight: bold;'>Discussion is on <span style='color: blue;'>{val.index[2]} </span>as a key area of focus with <span style='color: green;'font-weight: bold;'>{round(val[2],2)}</span> engagement rate.</p>"
+							st.write(highlighted_text1, unsafe_allow_html=True)
+							st.write(highlighted_text2, unsafe_allow_html=True)
+							st.write(highlighted_text3, unsafe_allow_html=True)		
 						#col7, col8 = st.columns(2)
 
 						#with col7:
