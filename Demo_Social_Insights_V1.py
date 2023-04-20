@@ -2116,7 +2116,7 @@ def func(choice):
 					text=alt.Text('count(KIC-1_Pred):Q', format='.0f')
 				)
 				c = bars + text
-				c.height=230
+				c.height=280
 				#altair_viewer.display(c, inline=True)
 				return c				
 
