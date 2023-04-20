@@ -2116,7 +2116,7 @@ def func(choice):
 					text=alt.Text('count(KIC-1_Pred):Q', format='.0f')
 				)
 				c = bars + text
-				c.height=180
+				c.height=230
 				#altair_viewer.display(c, inline=True)
 				return c				
 
@@ -2365,7 +2365,7 @@ def func(choice):
 							#st.success(highlighted_text)
 						
 						with col5:
-							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">How does the sentiment vary:question:</p>**',unsafe_allow_html=True)
+							st.markdown('**<p style="font-size:20px;border-radius:2%;text-align:center;">How does the sentiment vary for Top Key Topics:question:</p>**',unsafe_allow_html=True)
 							c = absa_kic(data)
 							st.altair_chart(c,use_container_width=True)
 
