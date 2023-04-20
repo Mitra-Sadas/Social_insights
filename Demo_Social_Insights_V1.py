@@ -2092,6 +2092,34 @@ def func(choice):
 				for i in range(len(val)):
 				    plt.text(x=i-0.10,y=val.values[i]+0.05,s=str(val.values[i]), fontsize=15)	    		
 				return plt
+
+			def absa_kic(df):
+				df = df[~df['KIC-1_Pred'].isin(['HS','COSENTYX','OTHER'])]
+				dftest = df.groupby(['KIC-1_Pred'])['KIC-1_Pred'].count().reset_index(name='Count').sort_values(['Count'], ascending=False)[:3]
+				df = df[df['KIC-1_Pred'].isin(list(dftest['KIC-1_Pred'].unique()))]
+				domain  = ['Positive', 'Negative', 'Neutral']
+				range_ = ['green','red','orange']
+				bars = alt.Chart(df).mark_bar().encode(
+					x=alt.X('count(KIC-1_Pred):Q', stack='zero', axis=alt.Axis(title='Count',grid=False, format='.0f',tickMinStep=1), sort=alt.EncodingSortField(field='KIC-1_Pred', op='count', order='descending')),
+					y=alt.Y('KIC-1_Pred:N',axis=alt.Axis(grid=False)),
+					color=alt.Color('sentiment', scale=alt.Scale(domain=domain, range=range_),legend=alt.Legend(
+						orient='bottom',
+						#legendX=50, legendY=-40,
+						direction='horizontal',
+						titleAnchor='middle'))
+				)
+
+				text = alt.Chart(df).mark_text(dx=-12, dy=3, color='white', size=15).encode(
+					x=alt.X('count(KIC-1_Pred):Q', stack='zero'),
+					y=alt.Y('KIC-1_Pred:N'),
+					detail='sentiment:N',
+					text=alt.Text('count(KIC-1_Pred):Q', format='.0f')
+				)
+				c = bars + text
+				c.height=180
+				#altair_viewer.display(c, inline=True)
+				return c				
+
 			def parse_twitter_tweets(usernames):
 				user_name = []
 				handle = []
@@ -2350,7 +2378,9 @@ def func(choice):
 								st.write(highlighted_text2, unsafe_allow_html=True)
 								st.write(highlighted_text3, unsafe_allow_html=True)								
 							#st.success(highlighted_text)
-							
+						
+						c = absa_kic(data)
+						st.altair_chart(c)
 
 						#col7, col8 = st.columns(2)
 
