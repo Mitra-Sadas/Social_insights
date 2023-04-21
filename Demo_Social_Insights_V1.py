@@ -45,7 +45,7 @@ import datetime as dt
 from time import sleep
 import gender_guesser.detector as gender
 g = gender.Detector()
-#from pyxlsb import open_workbook as open_xlsb
+##from pyxlsb import open_workbook as open_xlsb
 import altair as alt
 
 @st.cache(allow_output_mutation=True)
