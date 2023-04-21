@@ -359,7 +359,6 @@ def getoutput(df, df2, threshold1, threshold2):
 
 			
 		#potential_matches['Score'] = (potential_matches['Score_static']+potential_matches['Score_dynamic'])/2
-		#st.dataframe(potential_matches.head())
 		potential_matches = potential_matches.sort_values(['SrNum1','Score'], ascending=[True,False])
 
 		final_merge = potential_matches
@@ -421,8 +420,6 @@ def view_data(df, df2, threshold1,threshold2,final_merge, final_merge_match,fina
 		col1, col2, col3 = st.columns(3)
 		with col1:
 			header_2("Number of Matching Profiles")
-			#st.text("\n")
-			#st.text("\n")
 		with col2:
 			header_2("Number of Manual Review Profiles")
 		with col3:
