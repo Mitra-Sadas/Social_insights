@@ -47,6 +47,18 @@ import gender_guesser.detector as gender
 g = gender.Detector()
 ##from pyxlsb import open_workbook as open_xlsb
 import altair as alt
+import matplotlib.pyplot as plt
+import en_ner_bc5cdr_md
+import en_core_web_sm
+nltk.download('stopwords')
+try:
+	if st.session_state['d_c_base_spacy_model'] is not None:
+		pass
+except:
+	d_c_base_spacy_model = en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
+	st.session_state['d_c_base_spacy_model'] = d_c_base_spacy_model
+	pgo_base_spacy_model = en_core_web_sm.load()
+	st.session_state['pgo_base_spacy_model'] = pgo_base_spacy_model
 
 @st.cache(allow_output_mutation=True)
 def upload1(data, data2):
@@ -2208,13 +2220,13 @@ def func(choice):
 			############################################
 			with st.spinner("Analysing the Data and Initializing NLP models, please wait..."):
 				import matplotlib.pyplot as plt
-				import en_ner_bc5cdr_md
-				import en_core_web_sm
-				nltk.download('stopwords')
-				d_c_base_spacy_model = en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
-				pgo_base_spacy_model = en_core_web_sm.load() #spacy.load("en_core_web_sm")
-			df = pd.read_excel("HCP_Tweets.xlsx")
-			df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
+				# import en_ner_bc5cdr_md
+				# import en_core_web_sm
+				# nltk.download('stopwords')
+				d_c_base_spacy_model = st.session_state.d_c_base_spacy_model #en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
+				pgo_base_spacy_model = st.session_state.pgo_base_spacy_model#en_core_web_sm.load() #spacy.load("en_core_web_sm")
+				df = pd.read_excel("HCP_Tweets.xlsx")
+				df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
 			data1 = df
 			data1['HCP Name'] = "Dr. "+ data1['Full_Name']
