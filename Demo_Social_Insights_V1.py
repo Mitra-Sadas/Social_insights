@@ -60,7 +60,7 @@ except:
 	pgo_base_spacy_model = en_core_web_sm.load()
 	st.session_state['pgo_base_spacy_model'] = pgo_base_spacy_model
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def upload1(data, data2):
 	col1, col2 = st.columns(2)
 	with st.spinner("Uploading file"):
@@ -174,7 +174,7 @@ def calcscore(hcp_first, hcp_middle, hcp_last, hcp_title, hcp_gender, hcp_city, 
 	return final_score_list_g1
 	
 
-@st.cache(allow_output_mutation=True, persist=True)
+@st.cache_data(allow_output_mutation=True, persist=True)
 def getoutput(df, df2, threshold1, threshold2):
 	with st.spinner(text="Matching the social profiles, Please wait..."):
 		df[['PersonFirstName','PersonLastName','PersonTitleCode']] = df[['PersonFirstName','PersonLastName','PersonTitleCode']].apply(lambda x: x.astype(str).str.lower())
@@ -443,7 +443,7 @@ def view_data(df, df2, threshold1,threshold2,final_merge, final_merge_match,fina
 		with col3:
 			header_1(str(len(final_merge_non_match['SrNum1_hcp'].unique())))
 
-		st.cache()
+		st.cache_data()
 	hide_dataframe_row_index = """
 	            <style>
 	            .row_heading.level0 {display:none}
@@ -548,7 +548,7 @@ def view_data2(df, final_merge_match, final_merge_non_match, threshold1,threshol
 	with col7:
 		st.download_button(label="Download All HCP data",data=finalfile1.to_csv(index=False).encode('utf-8'),file_name="All HCPs After Review.csv",mime='text/csv')
 	
-#@st.cache(persist=True)
+#@st.cache_data(persist=True)
 def manual_file_upload(manualfile):
 	
 	manualfile['Valid'] = manualfile['Valid (Enter Y where valid)'].replace({'Y':1,'N':0})
@@ -572,7 +572,7 @@ def manual_file_upload(manualfile):
 	st.write()
 	return manualfile
 
-@st.cache(persist=True,allow_output_mutation=True)
+@st.cache_data(persist=True,allow_output_mutation=True)
 def profilesearch(df):
 
 	first = df.PersonFirstName
@@ -796,7 +796,7 @@ activities = ["Data Collection", "Social Media Handle Mapping", "Affinity Calcul
 choice = st.sidebar.selectbox("Select Activity", activities, key='sel1')
 
 
-#@st.cache
+#@st.cache_data
 # def search_tag(s, tags):
 
 #     s = s.lower()
@@ -808,7 +808,7 @@ choice = st.sidebar.selectbox("Select Activity", activities, key='sel1')
 #             break
 #     return flg
 
-@st.cache()
+@st.cache_data()
 def twittwe_api(sm_handles):
 
 	with st.spinner("Collecting profile information from twitter"):
@@ -1741,7 +1741,7 @@ def func(choice):
 					plchldfile.empty()
 		if len(d)>0:
 			#d = d.head(2)
-			@st.cache(allow_output_mutation=True)
+			@st.cache_data(allow_output_mutation=True)
 			def run_nlp_models(df):
 				for i,v in enumerate(df['Insight'].astype(str)):
 					df.loc[i,'Insight_word_cloud'] = prep.clean(v)
@@ -2240,7 +2240,7 @@ def func(choice):
 				#col21,col22,col23 = st.columns(3) 
 				placeholder = st.empty()
 				placeholder.write("Please choose an option to show the analysis")
-				hcpname = st.sidebar.selectbox('Please select the Name of HCP',selection_list,key='sel1')
+				hcpname = st.sidebar.selectbox('Please select the Name of HCP',selection_list,key='sel2')
 				if hcpname is not None and hcpname!=" ":
 					placeholder.empty()
 					if hcpname == "ALL":
