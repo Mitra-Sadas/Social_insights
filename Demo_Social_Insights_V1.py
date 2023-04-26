@@ -60,7 +60,7 @@ except:
 	pgo_base_spacy_model = en_core_web_sm.load()
 	st.session_state['pgo_base_spacy_model'] = pgo_base_spacy_model
 
-@st.cache_data(allow_output_mutation=True)
+@st.cache_data()#allow_output_mutation=True)
 def upload1(data, data2):
 	col1, col2 = st.columns(2)
 	with st.spinner("Uploading file"):
@@ -174,7 +174,7 @@ def calcscore(hcp_first, hcp_middle, hcp_last, hcp_title, hcp_gender, hcp_city, 
 	return final_score_list_g1
 	
 
-@st.cache_data(allow_output_mutation=True, persist=True)
+@st.cache_data()#allow_output_mutation=True, persist=True)
 def getoutput(df, df2, threshold1, threshold2):
 	with st.spinner(text="Matching the social profiles, Please wait..."):
 		df[['PersonFirstName','PersonLastName','PersonTitleCode']] = df[['PersonFirstName','PersonLastName','PersonTitleCode']].apply(lambda x: x.astype(str).str.lower())
@@ -572,7 +572,7 @@ def manual_file_upload(manualfile):
 	st.write()
 	return manualfile
 
-@st.cache_data(persist=True,allow_output_mutation=True)
+@st.cache_data()#persist=True,allow_output_mutation=True)
 def profilesearch(df):
 
 	first = df.PersonFirstName
@@ -1741,7 +1741,7 @@ def func(choice):
 					plchldfile.empty()
 		if len(d)>0:
 			#d = d.head(2)
-			@st.cache_data(allow_output_mutation=True)
+			@st.cache_data()#allow_output_mutation=True)
 			def run_nlp_models(df):
 				for i,v in enumerate(df['Insight'].astype(str)):
 					df.loc[i,'Insight_word_cloud'] = prep.clean(v)
