@@ -17,8 +17,8 @@ import re
 import preprocessor as prep
 from nameparser import HumanName
 from pyxlsb import open_workbook as open_xlsb
-import warnings
-warnings.filterwarnings("ignore")
+#import warnings
+#warnings.filterwarnings("ignore")
 from time import sleep
 from wordcloud import WordCloud, STOPWORDS
 #from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
