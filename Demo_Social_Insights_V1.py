@@ -2229,7 +2229,7 @@ def func(choice):
 				df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
 			data1 = df
-			data1['HCP Name'] = "Dr. "+ data1['Name']
+			data1['HCP Name'] = "Dr. "+ data1['Full_Name']
 			if df is not None:
 				#selection_list = list(data1['HCP Name'].unique()[:5])
 				selection_list = list(data1['HCP Name'].value_counts()[(data1['HCP Name'].value_counts()>50) & (data1['HCP Name'].value_counts()<95)].index[:20])
