@@ -2011,7 +2011,7 @@ def func(choice):
 				dftest = df.groupby(['MEDICAL_CONDITION'])['MEDICAL_CONDITION'].count().reset_index(name='Count').sort_values(['Count'], ascending=False)[0:10]
 				df = df[df['MEDICAL_CONDITION'].isin(list(dftest['MEDICAL_CONDITION'].unique()))]
 				domain  = ['Positive', 'Negative', 'Neutral']
-				range_ = ['green','red','orange']
+				range_ = ['green','orange','grey']
 				bars = alt.Chart(df).mark_bar().encode(
 				    x=alt.X('count(MEDICAL_CONDITION):Q', stack='zero', axis=alt.Axis(title='Count',grid=False, format='.0f',tickMinStep=1), sort=alt.EncodingSortField(field='MEDICAL_CONDITION', op='count', order='descending')),
 				    y=alt.Y('MEDICAL_CONDITION:N',axis=alt.Axis(grid=False)),
@@ -2035,7 +2035,7 @@ def func(choice):
 			def pie_chart(data):
 				plt.figure(figsize=[20,20])
 				var=data['sentiment'].value_counts()
-				plt.pie(x=var.values,labels=var.index,autopct='%1.2f%%',pctdistance=0.85, colors=['grey', 'pink','orange'],textprops={'fontsize': 25})
+				plt.pie(x=var.values,labels=var.index,autopct='%1.2f%%',pctdistance=0.85, colors=['green', 'grey','orange'],textprops={'fontsize': 25})
 				#plt.title('Distribution of Sentiments', fontsize=15)
 				labels=var.index
 				centre_circle = plt.Circle((0, 0), 0.70, fc='white')
