@@ -2225,7 +2225,7 @@ def func(choice):
 				# nltk.download('stopwords')
 				d_c_base_spacy_model = st.session_state.d_c_base_spacy_model #en_ner_bc5cdr_md.load() #spacy.load("en_ner_bc5cdr_md")
 				pgo_base_spacy_model = st.session_state.pgo_base_spacy_model#en_core_web_sm.load() #spacy.load("en_core_web_sm")
-				df = pd.read_excel("Takeda HCP Twitter tweets Data.xlsx)#"HCP_Tweets.xlsx")
+				df = pd.read_excel("Takeda HCP Twitter tweets Data.xlsx")#"HCP_Tweets.xlsx")
 				df,asbadf1,symdf1,meddf1 = run_nlp_models(df)
 
 			data1 = df
