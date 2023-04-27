@@ -2035,7 +2035,7 @@ def func(choice):
 			def pie_chart(data):
 				plt.figure(figsize=[20,20])
 				var=data['sentiment'].value_counts()
-				plt.pie(x=var.values,labels=var.index,autopct='%1.2f%%',pctdistance=0.85, colors=['green', 'grey','orange'],textprops={'fontsize': 25})
+				plt.pie(x=var.values,labels=var.index,autopct='%1.2f%%',pctdistance=0.85, colors=['green','orange','red'],textprops={'fontsize': 25})
 				#plt.title('Distribution of Sentiments', fontsize=15)
 				labels=var.index
 				centre_circle = plt.Circle((0, 0), 0.70, fc='white')
